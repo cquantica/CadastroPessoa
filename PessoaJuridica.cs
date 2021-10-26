@@ -1,19 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace CadastroPessoa
 {
     public class PessoaJuridica : Pessoa
 
     {
-        
         public string cnpj { get; set; }
-        
+
         public string RazaoSocial { get; set; }
-        
-        
-        
+
+        public override void PagarImposto(float salario)
+        {
+
+        }
+
+        public bool ValidarCNPJ(string cnpj)
+        {
+
+            if (cnpj.Length == 14 && cnpj.Substring(cnpj.Length - 4) == "0001")
+            {
+                return true;
+            }
+            return false;
+
+        }
     }
 }
