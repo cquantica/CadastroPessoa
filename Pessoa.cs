@@ -8,7 +8,9 @@ namespace CadastroPessoa
 
         public bool enderecoComercial { get; set; }
 
-        public abstract void PagarImposto(float salario);
+        public float rendimento { get; set; }
+
+        public abstract double PagarImposto(float salario);
 
     }
 

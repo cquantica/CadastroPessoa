@@ -7,8 +7,23 @@ namespace CadastroPessoa
 
         public string RazaoSocial { get; set; }
 
-        public override void PagarImposto(float salario)
+        public override double PagarImposto(float rendimento)
         {
+            if (rendimento <= 5000)
+            {
+                return rendimento * .06;
+
+            }
+            else if (rendimento > 5000 && rendimento <= 10000)
+            {
+                return rendimento * .08;
+
+            }
+            else
+            {
+                return (rendimento/100) * 10;
+            }
+
 
         }
 

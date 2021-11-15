@@ -10,7 +10,6 @@ namespace CadastroPessoa
         static void Main(string[] args)
         {
 
-
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.BackgroundColor = ConsoleColor.White;
@@ -27,7 +26,7 @@ namespace CadastroPessoa
             string opcao;
             do
             {
-                
+
                 Console.WriteLine(@$"
 ===================================
 | Selecione uma das opções abaixo |
@@ -60,6 +59,7 @@ namespace CadastroPessoa
                         novaPf.endereco = endPF;
                         novaPf.cpf = "123456789";
                         novaPf.nome = "Pessoa fisica";
+                        novaPf.rendimento = 1500;
                         novaPf.dataNascimento = new DateTime(2000, 06, 15);
 
                         Console.WriteLine($@"Rua: {novaPf.endereco.logradouro}, {novaPf.endereco.numero}");
@@ -76,6 +76,8 @@ namespace CadastroPessoa
                             Console.WriteLine($"Cadastro reprovado, não é permitido cadastro de usuário com menos de 18 anos");
 
                         }
+                        Console.WriteLine(pf.PagarImposto(novaPf.rendimento));
+
                         break;
 
                     case "2":
@@ -97,6 +99,7 @@ namespace CadastroPessoa
                         novaPj.endereco = endPJ;
                         novaPj.cnpj = "34567890000199";
                         novaPj.RazaoSocial = "Pessoa Juridica";
+                        novaPj.rendimento = 10000;
 
                         // Pessoa Fisica no bool 
                         // Se a condiçao for true nao adiciona return true | Se for false no início da comparação adicionar o "!"
@@ -109,6 +112,9 @@ namespace CadastroPessoa
                             Console.WriteLine($"CNPJ Inválido");
 
                         }
+
+                        Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
+                        
                         break;
 
                     case "0":
@@ -122,6 +128,7 @@ namespace CadastroPessoa
                     default:
                         Console.ResetColor();
                         Console.WriteLine($"Opção inválida, por favor digite uma opção válida");
+                        
                         break;
                 }
 
@@ -136,15 +143,12 @@ namespace CadastroPessoa
             Console.ForegroundColor = ConsoleColor.DarkRed;
             Console.Write(textoCarregamento);
             Thread.Sleep(500);
-            for (var i = 0; i < 10; i++)
+            for (var contador = 0; contador < 5; contador++)
             {
                 Console.WriteLine(".");
                 Thread.Sleep(500);
             }
             Console.ResetColor();
         }
-
-
     }
-
 }
