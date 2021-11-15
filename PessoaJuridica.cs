@@ -15,7 +15,7 @@ namespace CadastroPessoa
         public bool ValidarCNPJ(string cnpj)
         {
 
-            if (cnpj.Length == 14 && cnpj.Substring(cnpj.Length - 4) == "0001")
+            if (cnpj.Length == 14 && cnpj.Substring(cnpj.Length - 6, 4) == "0001")
             {
                 return true;
             }

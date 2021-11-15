@@ -13,7 +13,8 @@ namespace CadastroPessoa
         public DateTime dataNascimento { get; set; }
 
         // Adicionando Polimorfismo
-        public override void PagarImposto(float salario){
+        public override void PagarImposto(float salario)
+        {
 
         }
 
