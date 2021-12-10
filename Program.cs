@@ -61,7 +61,7 @@ namespace CadastroPessoa
                         PessoaFisica novaPf = new PessoaFisica();
                         Endereco endPF = new Endereco();
 
-                   
+
                         //Instanciando Pessoa
                         novaPf.endereco = endPF;
 
@@ -94,7 +94,7 @@ namespace CadastroPessoa
 
                         }
 
-     // Instanciando Endereco
+                        // Instanciando Endereco
                         Console.WriteLine($"Digite seu logradouro");
                         endPF.logradouro = Console.ReadLine();
 
@@ -133,22 +133,23 @@ namespace CadastroPessoa
                             }
                         }
 
-                        
+
                         break;
 
                     case "2":
 
-                    if (listaPf.Count>0){
-
-                        foreach (var cadaItem in listaPf)
+                        if (listaPf.Count > 0)
                         {
-                            Console.WriteLine($"Nome: {cadaItem.nome}");
-                            Console.WriteLine($"CPF: {cadaItem.cpf}");
-                            Console.WriteLine($"Logradouro: {cadaItem.endereco.logradouro}");
-                            Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
-                            Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
+
+                            foreach (var cadaItem in listaPf)
+                            {
+                                Console.WriteLine($"Nome: {cadaItem.nome}");
+                                Console.WriteLine($"CPF: {cadaItem.cpf}");
+                                Console.WriteLine($"Logradouro: {cadaItem.endereco.logradouro}");
+                                Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
+                                Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
+                            }
                         }
-                    }    
 
                         break;
 
@@ -189,7 +190,7 @@ namespace CadastroPessoa
                         Console.WriteLine($"Digite sua Razão Social");
                         novaPj.RazaoSocial = Console.ReadLine();
 
-                                                
+
                         // Pessoa Juridica no bool 
                         // Se a condiçao for true nao adiciona return true | Se for false no início da comparação adicionar o "!"
                         if (pj.ValidarCNPJ(novaPj.cnpj))
@@ -205,7 +206,7 @@ namespace CadastroPessoa
 
                         Console.WriteLine($"Digite seu rendimento mensal (somente números)");
                         novaPj.rendimento = float.Parse(Console.ReadLine());
-                        
+
                         Console.WriteLine($"Digite Seu Logradouro");
                         endPJ.logradouro = Console.ReadLine();
 
@@ -228,11 +229,24 @@ namespace CadastroPessoa
                         }
 
                         novaPj.endereco = endPJ;
-                      
-                        // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
-                        pj.VerificarArquivo(pj.Caminho);
-                        pj.Inserir(novaPj);
 
+                        // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
+                        // pj.VerificarArquivo(pj.Caminho);
+                        // pj.Inserir(novaPj);
+
+                        if (pj.Ler().Count > 0)
+                        {
+                            foreach (var item in pj.Ler())
+                            {
+                                Console.WriteLine($"Nome: {item.nome} - Razão social: {item.RazaoSocial} - CNPJ:{item.cnpj}");
+                            }
+
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Lista vazia");
+
+                        }
                         break;
 
                     case "5":
@@ -244,6 +258,8 @@ namespace CadastroPessoa
                             Console.WriteLine($"Logradouro: {cadaItem.endereco.logradouro}");
                             Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
                             Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
+
+
                         }
 
                         break;
@@ -264,8 +280,8 @@ namespace CadastroPessoa
                         {
                             Console.WriteLine($"CNPJ não encontrado!");
 
-                        }
 
+                        }
                         break;
 
                     case "0":

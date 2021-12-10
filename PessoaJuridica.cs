@@ -39,11 +39,10 @@ namespace CadastroPessoa
             }
             return false;
 
-
         }
         public string PrepararLinhasCsv(PessoaJuridica pj)
         {
-            return $"{pj.cnpj};{pj.RazaoSocial}";
+            return $"{pj.cnpj};{pj.nome};{pj.RazaoSocial}";
         }
 
         public void Inserir(PessoaJuridica pj)
