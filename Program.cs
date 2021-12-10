@@ -226,32 +226,37 @@ namespace CadastroPessoa
                         else
                         {
                             endPJ.enderecoComercial = false;
-                        }
 
-                        novaPj.endereco = endPJ;
 
-                        // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
-                        // pj.VerificarArquivo(pj.Caminho);
-                        // pj.Inserir(novaPj);
+                            novaPj.endereco = endPJ;
 
-                        if (pj.Ler().Count > 0)
-                        {
-                            foreach (var item in pj.Ler())
+                            // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
+                            pj.VerificarArquivo(pj.Caminho);
+                            pj.Inserir(novaPj);
+
+                            if (pj.Ler().Count > 0)
                             {
-                                Console.WriteLine($"Nome: {item.nome} - Razão social: {item.RazaoSocial} - CNPJ:{item.cnpj}");
+                                foreach (var item in pj.Ler())
+                                {
+                                    Console.WriteLine($"Nome: {item.nome} - Razão social: {item.RazaoSocial} - CNPJ:{item.cnpj}");
+                                }
+
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Lista vazia");
+
                             }
 
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Lista vazia");
 
                         }
+
                         break;
 
                     case "5":
 
                         foreach (var cadaItem in listaPj)
+
                         {
                             Console.WriteLine($"Razao Social: {cadaItem.RazaoSocial}");
                             Console.WriteLine($"CNPJ: {cadaItem.cnpj}");
@@ -259,9 +264,8 @@ namespace CadastroPessoa
                             Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
                             Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
 
-
+                            
                         }
-
                         break;
 
                     case "6":
