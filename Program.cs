@@ -4,6 +4,7 @@ using System.Threading;
 using System.Collections.Generic;
 
 
+
 namespace CadastroPessoa
 {
     class Program
@@ -114,6 +115,24 @@ namespace CadastroPessoa
 
                         }
 
+                        using (StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
+                        {
+                            sw.Write($"{novaPf.nome}");
+                            sw.Close();
+                        }
+
+                        using (StreamReader sr = new StreamReader($"{novaPf.nome}.txt"))
+
+                        {
+                            string linha;
+
+                            while ((linha = sr.ReadLine()) != null)
+                            {
+                                Console.WriteLine($"{linha}");
+                            }
+                        }
+
+
                         break;
 
                     case "2":
@@ -156,34 +175,76 @@ namespace CadastroPessoa
 
                         Endereco endPJ = new Endereco();
 
-                        // Instanciando Endereco
-                        endPJ.logradouro = "Rua X";
-                        endPJ.numero = 100;
-                        endPJ.complemento = "Proximo ao Senai Informatica";
-                        endPJ.enderecoComercial = true;
+                        Console.WriteLine($"Digite seu Nome");
+                        novaPj.nome = Console.ReadLine();
 
-                        novaPj.endereco = endPJ;
-                        novaPj.cnpj = "34567890000199";
-                        novaPj.RazaoSocial = "Pessoa Juridica";
-                        novaPj.rendimento = 10000;
+                        Console.WriteLine($"Digite seu CNPJ (somente números)");
+                        novaPj.cnpj = Console.ReadLine();
 
+                        Console.WriteLine($"Digite sua Razão Social");
+                        novaPj.rendimento = float.Parse(Console.ReadLine());
+
+                        Console.WriteLine($"Digite seu rendimento mensal (somente números)");
+                        novaPj.nome = Console.ReadLine();
+                        
                         // Pessoa Fisica no bool 
                         // Se a condiçao for true nao adiciona return true | Se for false no início da comparação adicionar o "!"
                         if (pj.ValidarCNPJ(novaPj.cnpj))
                         {
                             Console.WriteLine("CNPJ Válido");
+                            listaPj.Add(novaPj);
+                            Console.WriteLine($"O valor do Desconto do imposto é de {pj.PagarImposto(novaPj.rendimento).ToString("")} reais");
                         }
                         else
                         {
                             Console.WriteLine($"CNPJ Inválido");
-
                         }
 
-                        Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
+                        Console.WriteLine($"Digite Seu Logradouro");
+                        endPJ.logradouro = Console.ReadLine();
+
+                        Console.WriteLine($"Digite o Numero");
+                        endPJ.numero = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine($"Digite o complemento (Aperte ENTER para vazio)");
+                        endPJ.complemento = Console.ReadLine();
+
+                        Console.WriteLine($"Este endereco é Comercial ? S/N");
+                        string enderecoComercialPJ = Console.ReadLine().ToUpper();
+
+                        if (enderecoComercialPJ == "S")
+                        {
+                            endPJ.enderecoComercial = true;
+                        }
+                        else
+                        {
+                            endPJ.enderecoComercial = false;
+                        }
+
+                        novaPj.endereco = endPJ;
+
+                        using (StreamWriter sw = new StreamWriter($"{novaPj.nome}.txt"))
+                        {
+                            sw.Write($"{novaPj.nome}, {novaPj.cnpj}, {novaPj.RazaoSocial}");
+                        }
+
+                        using (StreamReader sr = new StreamReader($"{novaPj.nome}.txt"))
+                        {
+                            string linha;
+
+                            while ((linha = sr.ReadLine()) != null)
+                            {
+                                Console.WriteLine($"{linha}");
+                            }
+                        }
+
+                        // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
+                        pj.VerificarArquivo(pj.Caminho);
+                        pj.Inserir(novaPj);
 
                         break;
-                    
-                     case "5":
+
+                    case "5":
 
                         foreach (var cadaItem in listaPj)
                         {

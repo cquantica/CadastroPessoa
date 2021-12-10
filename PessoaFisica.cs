@@ -10,7 +10,7 @@ namespace CadastroPessoa
         public string cpf { get; set; }
 
         public DateTime dataNascimento { get; set; }
-            
+
         // Adicionando Polimorfismo
         public override double PagarImposto(float rendimento)
         {
@@ -42,19 +42,13 @@ namespace CadastroPessoa
             {
                 return true;
 
-            }else{
+            }
+            else
+            {
                 return false;
             }
-           
+
         }
-
-
-
-
-
-
-
-
 
     }
 }
