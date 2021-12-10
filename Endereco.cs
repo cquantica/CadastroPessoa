@@ -16,9 +16,5 @@ namespace CadastroPessoa
         public bool enderecoComercial { get; set; }
 
 
-
-
-
-
     }
 }

@@ -187,7 +187,7 @@ namespace CadastroPessoa
                         novaPj.cnpj = Console.ReadLine();
 
                         Console.WriteLine($"Digite sua Razão Social");
-                        novaPj.rendimento = float.Parse(Console.ReadLine());
+                        novaPj.RazaoSocial = Console.ReadLine();
 
                                                 
                         // Pessoa Juridica no bool 
@@ -204,7 +204,7 @@ namespace CadastroPessoa
                         }
 
                         Console.WriteLine($"Digite seu rendimento mensal (somente números)");
-                        novaPj.nome = Console.ReadLine();
+                        novaPj.rendimento = float.Parse(Console.ReadLine());
                         
                         Console.WriteLine($"Digite Seu Logradouro");
                         endPJ.logradouro = Console.ReadLine();
@@ -228,22 +228,7 @@ namespace CadastroPessoa
                         }
 
                         novaPj.endereco = endPJ;
-
-                        using (StreamWriter sw = new StreamWriter($"{novaPj.nome}.txt"))
-                        {
-                            sw.Write($"{novaPj.nome}, {novaPj.cnpj}, {novaPj.RazaoSocial}");
-                        }
-
-                        using (StreamReader sr = new StreamReader($"{novaPj.nome}.txt"))
-                        {
-                            string linha;
-
-                            while ((linha = sr.ReadLine()) != null)
-                            {
-                                Console.WriteLine($"{linha}");
-                            }
-                        }
-
+                      
                         // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
                         pj.VerificarArquivo(pj.Caminho);
                         pj.Inserir(novaPj);
