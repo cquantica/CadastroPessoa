@@ -61,28 +61,7 @@ namespace CadastroPessoa
                         PessoaFisica novaPf = new PessoaFisica();
                         Endereco endPF = new Endereco();
 
-                        // Instanciando Endereco
-                        Console.WriteLine($"Digite seu logradouro");
-                        endPF.logradouro = Console.ReadLine();
-
-                        Console.WriteLine($"Digite o número");
-                        endPF.numero = int.Parse(Console.ReadLine());
-
-                        Console.WriteLine($"Digite o Complemento (Aperte ENTER para vazio)");
-                        endPF.complemento = Console.ReadLine();
-
-                        Console.WriteLine($"Este é endereço comercial? S/N ");
-                        string enderecoComercial = Console.ReadLine().ToUpper();
-
-                        if (enderecoComercial == "S")
-                        {
-                            endPF.enderecoComercial = true;
-                        }
-                        else
-                        {
-                            endPF.enderecoComercial = false;
-                        }
-
+                   
                         //Instanciando Pessoa
                         novaPf.endereco = endPF;
 
@@ -115,6 +94,28 @@ namespace CadastroPessoa
 
                         }
 
+     // Instanciando Endereco
+                        Console.WriteLine($"Digite seu logradouro");
+                        endPF.logradouro = Console.ReadLine();
+
+                        Console.WriteLine($"Digite o número");
+                        endPF.numero = int.Parse(Console.ReadLine());
+
+                        Console.WriteLine($"Digite o Complemento (Aperte ENTER para vazio)");
+                        endPF.complemento = Console.ReadLine();
+
+                        Console.WriteLine($"Este é endereço comercial? S/N ");
+                        string enderecoComercial = Console.ReadLine().ToUpper();
+
+                        if (enderecoComercial == "S")
+                        {
+                            endPF.enderecoComercial = true;
+                        }
+                        else
+                        {
+                            endPF.enderecoComercial = false;
+                        }
+
                         using (StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
                         {
                             sw.Write($"{novaPf.nome}");
@@ -132,10 +133,13 @@ namespace CadastroPessoa
                             }
                         }
 
-
+                        
                         break;
 
                     case "2":
+
+                    if (listaPf.Count>0){
+
                         foreach (var cadaItem in listaPf)
                         {
                             Console.WriteLine($"Nome: {cadaItem.nome}");
@@ -144,6 +148,7 @@ namespace CadastroPessoa
                             Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
                             Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
                         }
+                    }    
 
                         break;
 
@@ -184,10 +189,8 @@ namespace CadastroPessoa
                         Console.WriteLine($"Digite sua Razão Social");
                         novaPj.rendimento = float.Parse(Console.ReadLine());
 
-                        Console.WriteLine($"Digite seu rendimento mensal (somente números)");
-                        novaPj.nome = Console.ReadLine();
-                        
-                        // Pessoa Fisica no bool 
+                                                
+                        // Pessoa Juridica no bool 
                         // Se a condiçao for true nao adiciona return true | Se for false no início da comparação adicionar o "!"
                         if (pj.ValidarCNPJ(novaPj.cnpj))
                         {
@@ -200,6 +203,9 @@ namespace CadastroPessoa
                             Console.WriteLine($"CNPJ Inválido");
                         }
 
+                        Console.WriteLine($"Digite seu rendimento mensal (somente números)");
+                        novaPj.nome = Console.ReadLine();
+                        
                         Console.WriteLine($"Digite Seu Logradouro");
                         endPJ.logradouro = Console.ReadLine();
 

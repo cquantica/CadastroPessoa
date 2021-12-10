@@ -10,7 +10,7 @@ namespace CadastroPessoa
         public string RazaoSocial { get; set; }
 
         public string Caminho { get; private set; } = "Database/PessoaJuridica.csv";
-
+        
         public override double PagarImposto(float rendimento)
         {
             if (rendimento <= 5000)
