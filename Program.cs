@@ -116,11 +116,12 @@ namespace CadastroPessoa
                         //     endPF.enderecoComercial = false;
                         // }
 
-                        using (StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
-                        {
-                            sw.Write($"{novaPf.nome}");
-                            
-                        }
+                        // using (StreamWriter sw = new StreamWriter($"{novaPf.nome}.txt"))
+                        // {
+                        //     sw.Write($"{novaPf.nome}");
+                        //     sw.Close();
+
+                        // }
 
                         using (StreamReader sr = new StreamReader($"{novaPf.nome}.txt"))
                         {
@@ -137,18 +138,15 @@ namespace CadastroPessoa
 
                     case "2":
 
-                        // if (listaPf.Count > 0)
-                        // {
+                        foreach (var cadaItem in listaPf)
+                        {
+                            Console.WriteLine($"Nome: {cadaItem.nome}");
+                            Console.WriteLine($"CPF: {cadaItem.cpf}");
+                            Console.WriteLine($"Logradouro: {cadaItem.endereco.logradouro}");
+                            Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
+                            Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
+                        }
 
-                            foreach (var cadaItem in listaPf)
-                            {
-                                Console.WriteLine($"Nome: {cadaItem.nome}");
-                                Console.WriteLine($"CPF: {cadaItem.cpf}");
-                                Console.WriteLine($"Logradouro: {cadaItem.endereco.logradouro}");
-                                Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
-                                Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
-                            }
-                        // }
 
                         break;
 
@@ -201,52 +199,50 @@ namespace CadastroPessoa
                             endPJ.enderecoComercial = false;
 
 
-                            novaPj.endereco = endPJ;
+                        }
+                        novaPj.endereco = endPJ;
 
-                            Console.WriteLine($"Digite seu CNPJ (somente números)");
-                            novaPj.cnpj = Console.ReadLine();
+                        Console.WriteLine($"Digite seu CNPJ (somente números)");
+                        novaPj.cnpj = Console.ReadLine();
 
 
-                            // Pessoa Juridica no bool 
-                            // Se a condiçao for true nao adiciona return true | Se for false no início da comparação adicionar o "!"
-                            if (pj.ValidarCNPJ(novaPj.cnpj))
-                            {
-                                Console.WriteLine("CNPJ Válido");
-                                
-                            }
-                            else
-                            {
-                                Console.WriteLine($"CNPJ Inválido");
-                            }
+                        // Pessoa Juridica no bool 
+                        // Se a condiçao for true nao adiciona return true | Se for false no início da comparação adicionar o "!"
+                        if (pj.ValidarCNPJ(novaPj.cnpj))
+                        {
+                            Console.WriteLine("CNPJ Válido");
 
-                            Console.WriteLine($"Digite sua Razão Social");
-                            novaPj.RazaoSocial = Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"CNPJ Inválido");
+                        }
 
-                            Console.WriteLine($"Digite seu rendimento mensal (somente números)");
-                            novaPj.rendimento = float.Parse(Console.ReadLine());
+                        Console.WriteLine($"Digite sua Razão Social");
+                        novaPj.RazaoSocial = Console.ReadLine();
 
-                            Console.WriteLine("Cadastro Concluído");
-                            listaPj.Add(novaPj);
-                            Console.WriteLine($"O valor do Desconto do imposto é de {pj.PagarImposto(novaPj.rendimento).ToString("")} reais");
-                            // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
-                            
-                            pj.VerificarArquivo(pj.Caminho);
-                            pj.Inserir(novaPj);
+                        Console.WriteLine($"Digite seu rendimento mensal (somente números)");
+                        novaPj.rendimento = float.Parse(Console.ReadLine());
 
-                            // if (pj.Ler().Count > 0)
-                            // {
+                        Console.WriteLine("Cadastro Concluído");
+                        listaPj.Add(novaPj);
+                        Console.WriteLine($"O valor do Desconto do imposto é de {pj.PagarImposto(novaPj.rendimento).ToString("")} reais");
+                        // Console.WriteLine(pj.PagarImposto(novaPj.rendimento).ToString("N2"));
+
+                        pj.VerificarArquivo(pj.Caminho);
+                        pj.Inserir(novaPj);
+
+                        if (pj.Ler().Count > 0)
+                        {
                             foreach (var item in pj.Ler())
                             {
                                 Console.WriteLine($"Nome: {item.nome} - Razão social: {item.RazaoSocial} - CNPJ:{item.cnpj}");
                             }
 
-                            // }
-                            // else
-                            // {
-                            //     Console.WriteLine($"Lista vazia");
-
-                            // }
-
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Lista vazia");
 
                         }
 
@@ -254,17 +250,25 @@ namespace CadastroPessoa
 
                     case "5":
 
-                        foreach (var cadaItem in listaPj)
+                        Console.Clear();
+                        PessoaJuridica verificadorpj = new PessoaJuridica();
+
+                        if (verificadorpj.Ler().Count > 0)
 
                         {
-                            Console.WriteLine($"Razao Social: {cadaItem.RazaoSocial}");
-                            Console.WriteLine($"CNPJ: {cadaItem.cnpj}");
-                            Console.WriteLine($"Logradouro: {cadaItem.endereco.logradouro}");
-                            Console.WriteLine($"Numero: {cadaItem.endereco.numero}");
-                            Console.WriteLine($"Rendimento: {cadaItem.rendimento}");
-
-
+                            foreach (var item in verificadorpj.Ler())
+                            {
+                                Console.WriteLine($"Nome: {item.nome} - Razao Social: {item.RazaoSocial} - CNPJ: {item.cnpj}");
+                            }
                         }
+                        else
+                        {
+                            Console.WriteLine($"Lista vazia");
+                        }
+
+                        Console.WriteLine($"Aperte enter para continuar");
+                        Console.ReadLine();
+
                         break;
 
                     case "6":
